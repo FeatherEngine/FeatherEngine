@@ -1,4 +1,4 @@
-package main.kotlin.eu.feather.featherengine
+package eu.feather.featherengine
 
 interface Plugin {
 }
