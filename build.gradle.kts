@@ -2,15 +2,12 @@ plugins {
     kotlin("jvm") version "1.3.72"
 }
 
-group = "eu.feather.featherengine"
-version = "0.1"
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation(kotlin("stdlib-jdk8"))
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven("https://dl.bintray.com/korlibs/korlibs/")
+    }
 }
 
 tasks {
