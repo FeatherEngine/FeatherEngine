@@ -7,6 +7,7 @@ import eu.feather.featherengine.command.CommandSender
 interface Entity : CommandSender {
 
     val location: Location
+
     var customName : String
 
     fun getWorld(): World {

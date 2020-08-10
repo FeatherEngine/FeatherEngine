@@ -4,4 +4,6 @@ interface World {
 
     val name: String
 
+    var difficulty: Difficulty
+
 }
