@@ -1,13 +1,20 @@
 package eu.feather.featherengine
 
-class Location (
-    val world: World,
-    val x: Double,
-    val y: Double,
-    val z: Double,
-    val pitch: Float = 0F,
-    val yaw: Float = 0F
-) : Cloneable {
+import kotlin.math.floor
 
+data class Location(
+    var world: World,
+    var x: Double,
+    var y: Double,
+    var z: Double,
+    var pitch: Float = 0F,
+    var yaw: Float = 0F
+) {
+
+    fun center() {
+        x = floor(x) + 0.5
+        y = floor(y) + 0.5
+        z = floor(z) + 0.5
+    }
 
 }

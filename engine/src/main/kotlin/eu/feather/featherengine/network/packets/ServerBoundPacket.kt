@@ -4,7 +4,7 @@ data class ServerBoundPacket(
     val protocolVersion: Int
 ) : Packet {
     override fun toByteArray(): ByteArray {
-
+        TODO("Not yet implemented")
     }
 
     override fun parse(bytes: ByteArray) {

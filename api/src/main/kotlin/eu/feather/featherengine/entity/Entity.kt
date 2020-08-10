@@ -2,15 +2,15 @@ package eu.feather.featherengine.entity
 
 import eu.feather.featherengine.Location
 import eu.feather.featherengine.World
+import eu.feather.featherengine.command.CommandSender
 
-interface Entity {
+interface Entity : CommandSender {
 
-    fun getName() : String
-
-    fun getLocation() : Location
+    val location: Location
+    var customName : String
 
     fun getWorld(): World {
-        return getLocation().world
+        return location.world
     }
 
 }
