@@ -5,7 +5,7 @@ import eu.feather.featherengine.OfflinePlayer
 
 interface Player : LivingEntity, OfflinePlayer {
 
-    var displayName : String
-    var gameMode : GameMode
+    var displayName: String
+    var gameMode: GameMode
 
 }

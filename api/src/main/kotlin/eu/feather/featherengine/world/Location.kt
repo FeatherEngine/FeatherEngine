@@ -1,4 +1,4 @@
-package eu.feather.featherengine
+package eu.feather.featherengine.world
 
 data class Location(
     var world: World,

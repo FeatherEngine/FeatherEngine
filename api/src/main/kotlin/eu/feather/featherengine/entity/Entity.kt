@@ -1,17 +1,13 @@
 package eu.feather.featherengine.entity
 
-import eu.feather.featherengine.Location
-import eu.feather.featherengine.World
 import eu.feather.featherengine.command.CommandSender
+import eu.feather.featherengine.world.Localizable
+import java.util.*
 
-interface Entity : CommandSender {
+interface Entity : CommandSender, Localizable {
 
-    val location: Location
+    val uuid: UUID
 
-    var customName : String
-
-    fun getWorld(): World {
-        return location.world
-    }
+    var customName: String
 
 }

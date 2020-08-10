@@ -1,4 +1,5 @@
 package eu.feather.featherengine.command
+
 interface CommandSender {
 
     val name: String
