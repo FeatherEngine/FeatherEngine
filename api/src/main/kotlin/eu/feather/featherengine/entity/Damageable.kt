@@ -1,6 +1,6 @@
 package eu.feather.featherengine.entity
 
-interface Damagable {
+interface Damageable {
 
     var maxHealth: Double
     var health: Double

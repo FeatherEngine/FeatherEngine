@@ -1,6 +1,5 @@
 package eu.feather.featherengine.entity
 
-interface LivingEntity : Entity, Damagable {
-
+interface LivingEntity : Entity, Damageable {
 
 }
