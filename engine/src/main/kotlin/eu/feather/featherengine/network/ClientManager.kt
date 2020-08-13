@@ -1,5 +1,6 @@
 package eu.feather.featherengine.network
 
+import eu.feather.featherengine.network.packets.HandShakePacket
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.Socket
 import io.ktor.network.sockets.aSocket
@@ -54,6 +55,7 @@ class ClientManager(
                 logger.debug("${client.remoteAddress}: $packetId")
                 val content = input.readPacket(length).readBytes()
                 logger.debug("${content.contentToString()} content of the packet")
+                input.readInt()
             }
         } catch (e: Throwable) {
             e.printStackTrace()
