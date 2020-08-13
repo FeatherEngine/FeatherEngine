@@ -13,20 +13,26 @@ data class Location(
     var yaw: Float = 0F
 ) {
 
-    fun distanceFlat(location: Location): Double {
+    fun distanceFlatSquared(location: Location): Double {
         if (world != location.world) {
             throw DifferentWorldsException("Locations are in two different worlds")
         }
+        return (x - location.x).pow(2) + (z - location.z).pow(2)
+    }
 
-        return sqrt((x - location.x).pow(2) + (z - location.z).pow(2))
+    fun distanceSquared(location: Location): Double {
+        if (world != location.world) {
+            throw DifferentWorldsException("Locations are in two different worlds")
+        }
+        return distanceFlat(location).pow(2) + (y - location.y).pow(2)
+    }
+
+    fun distanceFlat(location: Location): Double {
+        return sqrt(distanceFlatSquared(location))
     }
 
     fun distance(location: Location): Double {
-        if (world != location.world) {
-            throw DifferentWorldsException("Locations are in two different worlds")
-        }
-
-        return sqrt(distanceFlat(location).pow(2) + (y - location.y).pow(2))
+        return sqrt(distanceSquared(location))
     }
 
 }
