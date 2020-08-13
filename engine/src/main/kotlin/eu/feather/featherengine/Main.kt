@@ -1,11 +1,9 @@
 package eu.feather.featherengine
 
 import eu.feather.featherengine.network.ClientManager
-import io.ktor.util.InternalAPI
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.runBlocking
 import java.lang.Thread.sleep
 
 object Main {
@@ -23,4 +21,5 @@ object Main {
         val input = readLine()
         println("closing")
     }
+
 }
