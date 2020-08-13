@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm")
     id("com.github.johnrengelman.shadow") version "6.0.0"
+    kotlin("kapt")
     application
 }
 
@@ -13,6 +14,9 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
+
+    implementation(project(":annotations"))
+    kapt(project(":processor"))
 
     implementation("org.slf4j:slf4j-api:1.7.30")
     implementation("ch.qos.logback:logback-core:1.2.3")
