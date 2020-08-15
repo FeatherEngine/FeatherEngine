@@ -1,6 +1,8 @@
 package eu.feather.featherengine.network
 
 import eu.feather.featherengine.architecture.parse
+import eu.feather.featherengine.architecture.write
+import eu.feather.featherengine.network.client.ConnectedClient
 import eu.feather.featherengine.network.packets.HandShakePacket
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.Socket
@@ -46,7 +48,6 @@ class ClientManager(
         logger.debug("client connected: ${client.remoteAddress}")
         val input = client.openReadChannel()
         val output = client.openWriteChannel()
-
         try {
             while (true) {
                 val length = input.readVarInt()
@@ -57,6 +58,7 @@ class ClientManager(
                 logger.debug("${content.contentToString()} content of the packet")
                 input.readInt()
                 input.parse(HandShakePacket)
+                output.write(HandShakePacket(10), HandShakePacket)
             }
         } catch (e: Throwable) {
             e.printStackTrace()

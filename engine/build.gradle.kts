@@ -12,6 +12,8 @@ application.mainClassName = "eu.feather.featherengine.Main"
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
+    implementation(project(":api"))
+
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
 
     implementation("org.slf4j:slf4j-api:1.7.30")
