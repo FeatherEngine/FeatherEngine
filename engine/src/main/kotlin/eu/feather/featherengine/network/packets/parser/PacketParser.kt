@@ -1,11 +1,12 @@
 package eu.feather.featherengine.network.packets.parser
 
 import io.ktor.utils.io.ByteReadChannel
+import io.ktor.utils.io.ByteWriteChannel
 
 interface PacketParser<T> {
 
-    fun toByteArray(t: T): ByteArray
+    suspend fun ByteWriteChannel.write(t: T)
 
-    fun parse(byteChannel: ByteReadChannel): T
+    suspend fun ByteReadChannel.read(): T
 
 }

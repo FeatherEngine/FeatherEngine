@@ -1,15 +1,14 @@
 package eu.feather.featherengine.network
 
+import eu.feather.featherengine.architecture.parse
 import eu.feather.featherengine.network.packets.HandShakePacket
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.Socket
 import io.ktor.network.sockets.aSocket
 import io.ktor.network.sockets.openReadChannel
-import io.ktor.util.InternalAPI
-import io.ktor.util.encodeBase64
+import io.ktor.network.sockets.openWriteChannel
 import io.ktor.utils.io.core.readBytes
 import io.ktor.utils.io.readPacket
-import io.ktor.utils.io.readUTF8Line
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.coroutineScope
@@ -46,6 +45,7 @@ class ClientManager(
     private suspend fun handleClient(client: Socket) {
         logger.debug("client connected: ${client.remoteAddress}")
         val input = client.openReadChannel()
+        val output = client.openWriteChannel()
 
         try {
             while (true) {
@@ -56,6 +56,7 @@ class ClientManager(
                 val content = input.readPacket(length).readBytes()
                 logger.debug("${content.contentToString()} content of the packet")
                 input.readInt()
+                input.parse(HandShakePacket)
             }
         } catch (e: Throwable) {
             e.printStackTrace()
