@@ -18,3 +18,8 @@ suspend fun ByteReadChannel.readVarInt(): Int {
     } while (read and 128.toByte() != 0.toByte())
     return result
 }
+
+suspend fun ByteReadChannel.readString(): String {
+    val length = readVarInt()
+    return readUTF8Line(length) ?: throw RuntimeException("chuj wie co się stało")
+}
