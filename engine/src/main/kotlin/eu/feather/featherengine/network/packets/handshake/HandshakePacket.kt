@@ -1,6 +1,7 @@
 package eu.feather.featherengine.network.packets.handshake
 
-import eu.feather.featherengine.network.packets.parser.PacketParser
+import eu.feather.featherengine.network.packets.parser.PacketReader
+import eu.feather.featherengine.network.packets.parser.PacketWriter
 import eu.feather.featherengine.network.readString
 import eu.feather.featherengine.network.readVarInt
 import io.ktor.utils.io.ByteReadChannel
@@ -12,11 +13,7 @@ data class HandshakePacket(
     val serverPort: Short,
     val nextState: ProtocolState
 ) {
-    companion object : PacketParser<HandshakePacket> {
-
-        override suspend fun ByteWriteChannel.write(t: HandshakePacket) {
-            TODO("Server bound packet")
-        }
+    companion object : PacketReader<HandshakePacket> {
 
         override suspend fun ByteReadChannel.read() =
             HandshakePacket(

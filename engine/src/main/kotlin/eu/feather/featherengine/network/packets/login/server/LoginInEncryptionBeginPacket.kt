@@ -1,6 +1,7 @@
 package eu.feather.featherengine.network.packets.login.server
 
-import eu.feather.featherengine.network.packets.parser.PacketParser
+import eu.feather.featherengine.network.packets.parser.PacketReader
+import eu.feather.featherengine.network.packets.parser.PacketWriter
 import eu.feather.featherengine.network.readVarInt
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
@@ -13,11 +14,7 @@ data class LoginInEncryptionBeginPacket(
     val verifyTokenLength: Int,
     val verifyToken: ByteArray
 ) {
-    companion object : PacketParser<LoginInEncryptionBeginPacket> {
-
-        override suspend fun ByteWriteChannel.write(t: LoginInEncryptionBeginPacket) {
-            TODO("Server bound packet")
-        }
+    companion object : PacketReader<LoginInEncryptionBeginPacket> {
 
         override suspend fun ByteReadChannel.read(): LoginInEncryptionBeginPacket {
             val secretKeyLength = readVarInt()

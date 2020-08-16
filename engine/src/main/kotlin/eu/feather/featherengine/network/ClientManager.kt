@@ -58,7 +58,6 @@ class ClientManager(
                 logger.debug("${content.contentToString()} content of the packet")
                 input.readInt()
                 input.parse(HandshakePacket)
-                output.write(HandshakePacket(10), HandshakePacket)
             }
         } catch (e: Throwable) {
             e.printStackTrace()

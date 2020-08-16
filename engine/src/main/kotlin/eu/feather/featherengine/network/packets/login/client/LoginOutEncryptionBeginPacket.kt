@@ -1,6 +1,6 @@
 package eu.feather.featherengine.network.packets.login.client
 
-import eu.feather.featherengine.network.packets.parser.PacketParser
+import eu.feather.featherengine.network.packets.parser.PacketWriter
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.writePacket
@@ -13,7 +13,7 @@ data class LoginOutEncryptionBeginPacket(
     val verifyTokenLength: Int,
     val verifyToken: ByteArray
 ) {
-    companion object : PacketParser<LoginOutEncryptionBeginPacket> {
+    companion object : PacketWriter<LoginOutEncryptionBeginPacket> {
 
         override suspend fun ByteWriteChannel.write(t: LoginOutEncryptionBeginPacket) {
             writeStringUtf8(t.serverId)
@@ -25,10 +25,6 @@ data class LoginOutEncryptionBeginPacket(
             writePacket {
                 t.verifyToken
             }
-        }
-
-        override suspend fun ByteReadChannel.read(): LoginOutEncryptionBeginPacket {
-            TODO("Client bound packet")
         }
 
     }

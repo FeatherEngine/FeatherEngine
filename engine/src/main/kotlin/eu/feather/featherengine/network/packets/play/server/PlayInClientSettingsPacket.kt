@@ -1,6 +1,7 @@
 package eu.feather.featherengine.network.packets.play.server
 
-import eu.feather.featherengine.network.packets.parser.PacketParser
+import eu.feather.featherengine.network.packets.parser.PacketReader
+import eu.feather.featherengine.network.packets.parser.PacketWriter
 import eu.feather.featherengine.network.readString
 import eu.feather.featherengine.network.readVarInt
 import io.ktor.utils.io.ByteReadChannel
@@ -14,11 +15,7 @@ data class PlayInClientSettingsPacket(
     val displayedSkinParts: Byte, //IT SHOULD BE UNSIGNED BYTE
     val mainHand: Int
 ) {
-    companion object : PacketParser<PlayInClientSettingsPacket> {
-
-        override suspend fun ByteWriteChannel.write(t: PlayInClientSettingsPacket) {
-            TODO("Server bound packet")
-        }
+    companion object : PacketReader<PlayInClientSettingsPacket> {
 
         override suspend fun ByteReadChannel.read() =
             PlayInClientSettingsPacket(
