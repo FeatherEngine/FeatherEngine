@@ -14,9 +14,9 @@ data class LoginOutDisconnectPacket(
             writeStringUtf8(t.reason)
         }
 
-        override suspend fun ByteReadChannel.read() = LoginOutDisconnectPacket(
+        override suspend fun ByteReadChannel.read(): LoginOutDisconnectPacket {
             TODO("Client bound packet")
-        )
+        }
 
     }
 }
