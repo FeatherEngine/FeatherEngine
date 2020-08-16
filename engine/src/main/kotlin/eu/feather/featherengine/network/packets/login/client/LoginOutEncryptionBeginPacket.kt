@@ -3,6 +3,7 @@ package eu.feather.featherengine.network.packets.login.client
 import eu.feather.featherengine.network.packets.parser.PacketParser
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
+import io.ktor.utils.io.writePacket
 import io.ktor.utils.io.writeStringUtf8
 
 data class LoginOutEncryptionBeginPacket(
@@ -17,9 +18,13 @@ data class LoginOutEncryptionBeginPacket(
         override suspend fun ByteWriteChannel.write(t: LoginOutEncryptionBeginPacket) {
             writeStringUtf8(t.serverId)
             writeInt(t.publicKeyLength)
-            //Send public key here
+            writePacket {
+                t.publicKey
+            }
             writeInt(t.verifyTokenLength)
-            //Send verify token here
+            writePacket {
+                t.verifyToken
+            }
         }
 
         override suspend fun ByteReadChannel.read(): LoginOutEncryptionBeginPacket {
