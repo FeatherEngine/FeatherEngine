@@ -1,7 +1,7 @@
 package eu.feather.featherengine.network.client
 
 import eu.feather.featherengine.architecture.parse
-import eu.feather.featherengine.network.packets.HandShakePacket
+import eu.feather.featherengine.network.packets.handshake.HandshakePacket
 import io.ktor.network.sockets.Socket
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
@@ -16,7 +16,7 @@ class ConnectedClient(
     var state = ConnectionState.HANDSHAKING
 
     suspend fun handle() {
-        input.parse(HandShakePacket)
+        input.parse(HandshakePacket)
     }
 
 }
